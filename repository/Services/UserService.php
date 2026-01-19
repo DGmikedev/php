@@ -1,7 +1,6 @@
 <?php
 
 require "../Repositories/UserRepository.php";
-//require "../Models/User.php";
 
 class UserService
 {
@@ -20,15 +19,13 @@ class UserService
 
 }
 
-$db = new PDO(
-    "mysql:host=localhost;dbname=php",
-    "root",
-    ""
-);
+$db = new PDO( "mysql:host=localhost;dbname=php", "root", "" );
 
 $userRepository = new UserRepository($db);
 
 $userService = new UserService($userRepository);
+
+
 
 // Registrar usuario
 // $re = $userService->register("FAZZ", "fazz@email.com");

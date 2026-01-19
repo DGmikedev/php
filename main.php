@@ -1,9 +1,6 @@
 <?php
 
 /*
- * MVC
- * Repository
- * Factory
  * Singleton
  * Observer
 */

@@ -51,7 +51,7 @@ class UserRepository implements UserRepositoryInterface
     }
 
     public function insertUser(string $name, string $email): bool{
-        
+
         $stmt = $this->db->prepare(
             "INSERT INTO users (name, email)VALUES(:name, :email );"
         );
