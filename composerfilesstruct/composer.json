@@ -1,0 +1,13 @@
+{
+    "name": "admin/testcomposer",
+    "description": "Es un paquete usado para poder hacer requires en proyectos php",
+    "type": "library",
+    "license": "gnu",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

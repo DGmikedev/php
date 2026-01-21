@@ -11,4 +11,7 @@ $user->attach(new EmailEnvio());
 $user->attach(new LogCreation());
 $user->attach(new NotifyAdmin());
 
+var_dump($user);
+die("<br>=========================");
+
 $user->register('Mike', 'mike@email.com');
