@@ -2,8 +2,41 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Clases\Log;
+use App\Infrastructure\Log;
 
 $log = new Log();
 
-$log->printText("texto de prueba para rastrear flujo de carpetas con psr-4");
+echo $log::setTiemStampNow("test")[1];
+/*
+
+echo "<br>";
+echo $log->setTiemStampNow(1);
+echo "<br>";
+echo $log->setTiemStampNow(2);
+echo "<br>";
+echo $log->setLevel(0);
+*/
+/*
+header('Content-Type: application/json');
+
+// Simulación de datos (puede venir de DB)
+$locations = [
+    [
+        'name' => 'Zócalo CDMX',
+        'lat' => 19.4326,
+        'lng' => -99.1332
+    ],
+    [
+        'name' => 'Chapultepec',
+        'lat' => 19.4204,
+        'lng' => -99.1819
+    ],
+    [
+        'name' => 'Coyoacán',
+        'lat' => 19.3467,
+        'lng' => -99.1617
+    ]
+];
+
+echo json_encode($locations);
+*/
