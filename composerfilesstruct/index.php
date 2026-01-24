@@ -6,7 +6,8 @@ use App\Infrastructure\Log;
 
 $log = new Log();
 
-echo $log::setTiemStampNow("test")[1];
+
+echo "[".$log->getDate()."] Lorem ipsum dolor, sit amet consectetur ";
 /*
 
 echo "<br>";
