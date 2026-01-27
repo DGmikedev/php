@@ -4,7 +4,7 @@ namespace App\Domain\Enums;
 
 use Carbon\Carbon;
 
-enum DateFormat: string
+enum DateFormatEnum: string
 {
     // ----- FORMATOS BASE DE PHP
     case ATOM           = 'atom';             // 2026-01-23T19:49:03+00:00
