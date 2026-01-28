@@ -6,7 +6,6 @@ use App\Infrastructure\Log;
 
 $log = new Log();
 
-
 echo "[".$log->getDate()."] Lorem ipsum dolor, sit amet consectetur ";
 /*
 

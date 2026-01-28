@@ -5,8 +5,8 @@ namespace App\Domain\Enums;
 enum ServiceFormatEnum: string
 {
 
-    case API    = "api";
-    case WORKER = "worker";
-    case CRON   = "cron";
+    case API    = "API";
+    case WORKER = "WORKER";
+    case CRON   = "CRON";
 
 }

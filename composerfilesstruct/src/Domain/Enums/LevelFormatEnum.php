@@ -9,9 +9,9 @@ namespace App\Domain\Enums;
 
 enum LevelFormatEnum: string
 {
-    case INFO     = 'info';
-    case WARNING  = 'warning';
-    case ERROR    = 'error';
-    case CRITICAL = 'critical';
+    case INFO     = 'INFO';
+    case WARNING  = 'WARNING';
+    case ERROR    = 'ERROR';
+    case CRITICAL = 'CRITICAL';
 
 }
