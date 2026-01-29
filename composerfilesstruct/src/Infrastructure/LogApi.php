@@ -26,41 +26,19 @@ class LogApi extends Log
         parent::__construct( $dateNow, $this->logDate, $level, ServiceFormatEnum::API, $enviroment);
     }
 
-    public function setDate(){
-        // $date = DateFormatEnum::LOGSTD1->eformat($this->dateNow);
-        $method='POST';
-        $endpoint='/api/users';
-        $status='201';
-        $response_time='120ms';
-        $ip='189.203.xxx.xxx';
-        $user_id='45';
-        $request_id='abc123';
+    public function apiwrite($array):void{
 
-    echo sprintf(LineLogEnum::API->getLine(), 
-            $this->logDate->eformat($this->dateNow), 
-            $method,
-            $endpoint,
-            $status,
-            $response_time,
-            $ip,
-            $user_id,
-            $request_id
-        );
+        $this->write(sprintf(
+                        LineLogEnum::API->getLine(), 
+                        $this->logDate->eformat($this->dateNow), 
+                        $array['method'],
+                        $array['endpoint'],
+                        $array['status'],
+                        $array['respn_time'],
+                        $array['ip'],
+                        $array['user_id'],
+                        $array['respns'],
+                    )
+                );
     }
-
-    
-
-    /*
-[fecha] 
-INFO 
-method=POST 
-endpoint=/api/users 
-status=201
-response_time=120ms
-ip=189.203.xxx.xxx
-user_id=45
-request_id=abc123",
-    */
-
-
 }

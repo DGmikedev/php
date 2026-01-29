@@ -5,6 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Infrastructure\Log;
 
 use App\Infrastructure\LogApi;
+use App\Infrastructure\LogServer;
 
 use App\Domain\Enums\DateFormatEnum;
 use App\Domain\Enums\LevelFormatEnum;
@@ -20,23 +21,18 @@ $dateTime = new \DateTimeImmutable(
     timezone: new \DateTimeZone("America/Mazatlan")
 );
 
-$log =  new LogApi(
-                $dateTime,
-                LevelFormatEnum::INFO,
-                EnviromentFormatEnum::DEV
-            );
-$log->setDate();
+// API LOG
+$apilog =  new LogApi( $dateTime, LevelFormatEnum::INFO, EnviromentFormatEnum::DEV );
 
-/*
-$log =  new Log(
-                $dateTime,
-                DateFormatEnum::LOGSTD1, //$dateTime, 
-                LevelFormatEnum::INFO,
-                ServiceFormatEnum::API,
-                EnviromentFormatEnum::DEV
-            );
+$rspns = ['method'=> 'GET','endpoint'=> '/api/users','status'=> '201','respn_time'=>'120ms','ip'=>'189.203.249.123','user_id'=>'45','respns'=>'data_response' ];
+$apilog->apiwrite($rspns);
+$rspns = [ 'method'=> 'POST', 'endpoint'=> '/api/user/{125}', 'status'=> '201', 'respn_time'=> '120ms', 'ip'=> '189.203.249.123', 'user_id'=> '45', 'respns'=> 'success' ];
+$apilog->apiwrite($rspns);
 
-$log->write("Linea de prueba.1");
-$log->write("Linea de prueba.2");
-echo printf(LineLogEnum::API->lnWrite(), $dateTime->format(DATE_ATOM));
-*/
+echo "<br>===========================================<br>";
+
+// SER_ERR
+$logServ = new LogServer($dateTime, LevelFormatEnum::INFO, EnviromentFormatEnum::DEV );
+$logServ->serverwrite();
+
+

@@ -20,7 +20,7 @@ class Log
     }
 
     public function headerLog():void{ 
-        $head = sprintf('<br>[%s] %s | %s | %s <br><br>',
+        $head = sprintf('<br>[%s] %s | %s | %s <br>',
                     $this->dateFromat->eformat($this->dateNow),
                     $this->level->value,
                     $this->service->value,
@@ -30,7 +30,7 @@ class Log
     }
 
     public function write(string $text): void{ 
-        echo  $text;
+        echo  $text . "<br>";
     }
 
 }
