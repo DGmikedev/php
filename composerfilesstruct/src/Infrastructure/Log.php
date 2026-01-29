@@ -2,35 +2,35 @@
 
 namespace App\Infrastructure;
 
-// use App\Domain\Enums\DateFormatEnum;
-// use App\Domain\Enums\LevelFormatEnum;      // INFO | WARNING | ERROR | CRITICAL
-// use App\Domain\Enums\EnviromentFormatEnum; // DEV  | STAGING | PROD
-// use App\Domain\Enums\ServiceFormatEnum;    // API  | WORKER  | CRON
+use App\Domain\Enums\DateFormatEnum;
+use App\Domain\Enums\LevelFormatEnum;      // INFO | WARNING | ERROR | CRITICAL
+use App\Domain\Enums\ServiceFormatEnum;    // API  | WORKER  | CRON
+use App\Domain\Enums\EnviromentFormatEnum; // DEV  | STAGING | PROD
 
-class Log
+class Log 
 {
-    private \DateTimeImmutable $dateNow;
-    private string $dateLog;
-    private string $request_id;
-    private string $message;
-    private string $context;
-
-    public function __construct($localZone = 'America/Mazatlan'){
-
-        $this->dateNow = new \DateTimeImmutable( 
-            datetime: 'now', 
-            timezone: new \DateTimeZone($localZone) 
-        );
-
-        $this->dateLog = DateFormatEnum::LOGSTD1->eformat($this->dateNow);
-
+    public function __construct(
+        private \DateTimeImmutable   $dateNow,
+        private DateFormatEnum       $dateFromat,
+        private LevelFormatEnum      $level,
+        private ServiceFormatEnum    $service,
+        private EnviromentFormatEnum $enviroment
+    ){
+        $this->headerLog();
     }
-    
-    public function getDateLogStd1(): string{ return $this->dateLog }
-    public function getEnviroment(string $env): string{ 
-        return match($env){
-            case ''
-        };
-     }
+
+    public function headerLog():void{ 
+        $head = sprintf('<br>[%s] %s | %s | %s <br><br>',
+                    $this->dateFromat->eformat($this->dateNow),
+                    $this->level->value,
+                    $this->service->value,
+                    $this->enviroment->value,
+                );
+        $this->write($head);
+    }
+
+    public function write(string $text): void{ 
+        echo  $text;
+    }
 
 }

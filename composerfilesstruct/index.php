@@ -4,39 +4,39 @@ require __DIR__ . '/vendor/autoload.php';
 
 use App\Infrastructure\Log;
 
-$log = new Log();
+use App\Infrastructure\LogApi;
 
-echo "[".$log->getDate()."] Lorem ipsum dolor, sit amet consectetur ";
+use App\Domain\Enums\DateFormatEnum;
+use App\Domain\Enums\LevelFormatEnum;
+use App\Domain\Enums\ServiceFormatEnum;
+use App\Domain\Enums\EnviromentFormatEnum;
+
+use App\Domain\Enums\LineLogEnum;
+
+
+
+$dateTime = new \DateTimeImmutable(
+    datetime: "now",
+    timezone: new \DateTimeZone("America/Mazatlan")
+);
+
+$log =  new LogApi(
+                $dateTime,
+                LevelFormatEnum::INFO,
+                EnviromentFormatEnum::DEV
+            );
+$log->setDate();
+
 /*
+$log =  new Log(
+                $dateTime,
+                DateFormatEnum::LOGSTD1, //$dateTime, 
+                LevelFormatEnum::INFO,
+                ServiceFormatEnum::API,
+                EnviromentFormatEnum::DEV
+            );
 
-echo "<br>";
-echo $log->setTiemStampNow(1);
-echo "<br>";
-echo $log->setTiemStampNow(2);
-echo "<br>";
-echo $log->setLevel(0);
-*/
-/*
-header('Content-Type: application/json');
-
-// Simulación de datos (puede venir de DB)
-$locations = [
-    [
-        'name' => 'Zócalo CDMX',
-        'lat' => 19.4326,
-        'lng' => -99.1332
-    ],
-    [
-        'name' => 'Chapultepec',
-        'lat' => 19.4204,
-        'lng' => -99.1819
-    ],
-    [
-        'name' => 'Coyoacán',
-        'lat' => 19.3467,
-        'lng' => -99.1617
-    ]
-];
-
-echo json_encode($locations);
+$log->write("Linea de prueba.1");
+$log->write("Linea de prueba.2");
+echo printf(LineLogEnum::API->lnWrite(), $dateTime->format(DATE_ATOM));
 */
