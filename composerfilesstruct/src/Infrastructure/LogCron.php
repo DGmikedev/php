@@ -10,7 +10,7 @@ use App\Domain\Enums\ServiceFormatEnum;
 use App\Domain\Enums\EnviromentFormatEnum;
 use App\Domain\Enums\LineLogEnum;
 
-class LogServer extends Log
+class LogCron extends Log
 {
 
     private DateFormatEnum $logDate;
@@ -22,25 +22,17 @@ class LogServer extends Log
     ){
         $this->logDate = DateFormatEnum::LOGSTD1;
 
-        parent::__construct( $dateNow, $this->logDate, $level, ServiceFormatEnum::SERVER, $enviroment);
+        parent::__construct( $dateNow, $this->logDate, $level, ServiceFormatEnum::CRON, $enviroment);
     }
 
-    public function serverwrite():void{
+    public function serverwrite($msg):void{
 
-        echo "SERVER LOG--";
-
-    /*  $this->write(sprintf(
-                    LineLogEnum::API->getLine(), 
+        $this->write(sprintf(
+                    LineLogEnum::SERVER->getLine(), 
                     $this->logDate->eformat($this->dateNow), 
-                    $array['method'],
-                    $array['endpoint'],
-                    $array['status'],
-                    $array['respn_time'],
-                    $array['ip'],
-                    $array['user_id'],
-                    $array['respns'],
+                    $msg
                 )
-            );   */
-}
+            ); 
+    }
 
 }

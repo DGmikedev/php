@@ -5,7 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Infrastructure\Log;
 
 use App\Infrastructure\LogApi;
-use App\Infrastructure\LogServer;
+use App\Infrastructure\LogCron;
 
 use App\Domain\Enums\DateFormatEnum;
 use App\Domain\Enums\LevelFormatEnum;
@@ -32,7 +32,17 @@ $apilog->apiwrite($rspns);
 echo "<br>===========================================<br>";
 
 // SER_ERR
-$logServ = new LogServer($dateTime, LevelFormatEnum::INFO, EnviromentFormatEnum::DEV );
-$logServ->serverwrite();
+$logServ = new LogCron($dateTime, LevelFormatEnum::INFO, EnviromentFormatEnum::DEV );
+$value = 0;
+   try{
+        // hacer algo
+        $logServ->serverwrite("Mensage de EXITO en tarea de servidor");
+        throw new Exception("error cod #456");
+    }
+    catch(Exception $e){
+        $logServ->serverwrite("Error al hacer la tarea: [". $e->getMessage() . "]");
+    }
+
+echo "<br>===========================================<br>";
 
 

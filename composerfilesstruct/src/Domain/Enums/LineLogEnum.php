@@ -4,19 +4,15 @@ namespace App\Domain\Enums;
 
 enum LineLogEnum: string 
 {
-    case API          = "API";
-    case SERVEER      = "SERVER";
-    case SER_LOG      = "SER_LOG";
-    case FILE_SUCCESS = "FILE_SUCCESS";
-    case FILE_ERROR   = "FILE_ERROR";
+    case API    = "API";
+    case SERVER = "SERVER";
+    case FILE   = "FILE";
 
     public function getLine(){
         return match($this){
             self::API => "[%s] INFO | method=%s | endpoint=%s | status=%s | response_time=%s | ip=%s | user_id=%s | request_id=%s",
             self::SERVER => "[%s] %s",
-            self::SER_LOG => "[22/Jan/2026:12:35:01] [189.203.xxx.xxx] [GET /index.php HTTP/1.1 200 4521]",
-            self::FILE_SUCCESS => "[2026-01-22 12:40:22] INFO action=CREATE_FILE path=/storage/reports/report_123.pdf size=1.4MB user_id=45 status=SUCCESS",
-            self::FILE_ERROR => "[2026-01-22 12:41:10] ERROR action=WRITE_FILE path=/storage/reports/report_124.pdf error=Permission denied"
+            self::FILE => "[2026-01-22 12:40:22] INFO action=CREATE_FILE path=/storage/reports/report_123.pdf size=1.4MB user_id=45 status=SUCCESS",
         };
     }
 }
