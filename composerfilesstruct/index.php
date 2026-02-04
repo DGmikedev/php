@@ -6,6 +6,7 @@ use App\Infrastructure\Log;
 
 use App\Infrastructure\LogApi;
 use App\Infrastructure\LogCron;
+use App\Infrastructure\LogFile;
 
 use App\Domain\Enums\DateFormatEnum;
 use App\Domain\Enums\LevelFormatEnum;
@@ -33,7 +34,7 @@ echo "<br>===========================================<br>";
 
 // SER_ERR
 $logServ = new LogCron($dateTime, LevelFormatEnum::INFO, EnviromentFormatEnum::DEV );
-$value = 0;
+
    try{
         // hacer algo
         $logServ->serverwrite("Mensage de EXITO en tarea de servidor");
@@ -41,8 +42,32 @@ $value = 0;
     }
     catch(Exception $e){
         $logServ->serverwrite("Error al hacer la tarea: [". $e->getMessage() . "]");
+    }finally{
+        $logServ->serverwrite("FIN de tarea: [#Errores: 1]");
     }
 
 echo "<br>===========================================<br>";
 
+$logWorker = new LogFile($dateTime, LevelFormatEnum::WARNING, EnviromentFormatEnum::DEV);
 
+    $arWorker = [
+        "action" => "CREATE_FILE",
+        "path" => "/storage/reports/report_123.pdf",
+        "size" => "1.4MB",
+        "user_id" => "45",
+        "status" => "SUCCESS",
+    ];
+
+    $logWorker->workerwrite($arWorker);
+
+    $arWorker = [
+        "action" => "ERASE_FILE",
+        "path" => "/storage/reports/report_88.pdf",
+        "size" => "1.4MB",
+        "user_id" => "888",
+        "status" => "SUCCESS",
+    ];
+
+    $logWorker->workerwrite($arWorker);
+
+echo "<br>===========================================<br>";

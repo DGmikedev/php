@@ -6,7 +6,7 @@ enum ServiceFormatEnum: string
 {
 
     case API    = "API";
-    case WORKER = "WORKER";
+    case FILE = "FILE";
     case CRON   = "CRON";
 
 }
