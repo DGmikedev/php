@@ -57,16 +57,4 @@ enum DateFormatEnum: string
         };
     }
 
-
-/*
-    private function setEULocale(Carbon $carbonObj): Carbon{
-        return $carbonObj->locale('en_US');
-    }
-    private function mxdocAdj(string $date): string{
-            $strdate = explode(" ",$date);
-            return $strdate[0] ." ". $strdate[1] ." ". ucfirst($strdate[2]) ." ". 
-                   $strdate[3] ." ". $strdate[4];
-    }
-
-    */
 }

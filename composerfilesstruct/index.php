@@ -34,11 +34,11 @@ echo "<br>===========================================<br>";
 
 // SER_ERR
 $logServ = new LogCron($dateTime, LevelFormatEnum::INFO, EnviromentFormatEnum::DEV );
-
+$hora = DateFormatEnum::SHRTDEU->eformat($dateTime);
    try{
         // hacer algo
-        $logServ->serverwrite("Mensage de EXITO en tarea de servidor");
-        throw new Exception("error cod #456");
+        $logServ->serverwrite("Mensaje de EXITO en tarea de servidor");
+        throw new Exception("error cod #456 - $hora");
     }
     catch(Exception $e){
         $logServ->serverwrite("Error al hacer la tarea: [". $e->getMessage() . "]");
@@ -71,3 +71,23 @@ $logWorker = new LogFile($dateTime, LevelFormatEnum::WARNING, EnviromentFormatEn
     $logWorker->workerwrite($arWorker);
 
 echo "<br>===========================================<br>";
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDG | <?= $hora ?></title>
+</head>
+<style>
+    body{
+        background-color:black;
+        color:#ff8;
+    }
+</style>
+<body>
+    <h3>PRUEBA LOG 1.0 -- <?= $hora ?> --</h3>
+</body>
+</html>
