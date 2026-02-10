@@ -32,7 +32,7 @@ class DataBase
                 ]
             );
         }catch(PDOException $e){
-            die("Error de conexción: $e->getMessage()");
+            die("Error de conexción: ".$e->getMessage());
         }
     }
 
